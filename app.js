@@ -1,38 +1,60 @@
-var express = require("express")
-var app = express()
-var bodyParser = require("body-parser")
+var express = require("express");
+var app = express();
+var bodyParser = require("body-parser");
+var mongoose = require("mongoose");
 
+mongoose.connect("mongodb://localhost/yelp_camp", { useNewUrlParser: true, useUnifiedTopology: true });
 app.use(bodyParser.urlencoded({extended: true}))
 app.set("view engine", "ejs")
 
-var campgrounds = [
-    {name: "Turtle Pond", image: "https://images.unsplash.com/photo-1471115853179-bb1d604434e0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=959&q=80"},
-    {name: "Walnut Hill", image: "https://images.unsplash.com/photo-1492648272180-61e45a8d98a7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"},
-    {name: "Mountine Pine", image: "https://images.unsplash.com/photo-1487730116645-74489c95b41b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"},
-    {name: "Turtle Pond", image: "https://images.unsplash.com/photo-1471115853179-bb1d604434e0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=959&q=80"},
-    {name: "Walnut Hill", image: "https://images.unsplash.com/photo-1492648272180-61e45a8d98a7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"},
-    {name: "Mountine Pine", image: "https://images.unsplash.com/photo-1487730116645-74489c95b41b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"},{name: "Turtle Pond", image: "https://images.unsplash.com/photo-1471115853179-bb1d604434e0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=959&q=80"},
-    {name: "Walnut Hill", image: "https://images.unsplash.com/photo-1492648272180-61e45a8d98a7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"},
-    {name: "Mountine Pine", image: "https://images.unsplash.com/photo-1487730116645-74489c95b41b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"}
-]
+//SCHEMA SETUP
+var campgroundSchema = new mongoose.Schema({
+    name: String,
+    image: String,
+    description: String
+});
+
+var Campground = mongoose.model("Campground", campgroundSchema);
+  
 
 app.get("/", (req, res) => {
     res.render("landing")
 })
 app.get("/campgrounds", (req, res) => {
-    res.render("campgrounds", {campgrounds: campgrounds})
+    Campground.find({}, function(err, allCampgrounds){
+        if(err){
+            console.log(err)
+        } else {
+            res.render("campgrounds", {campgrounds: allCampgrounds})        
+        }
+    })
 })
 app.get("/campgrounds/new", (req, res) => {
     res.render("new")
 })
 app.post("/campgrounds", (req, res) => {
     var name = req.body.name
-    var image = req.body.name
-    var newCampground = {name: name, image: image}
+    var image = req.body.image
+    var description = req.body.description
+    var newCampground = {name: name, image: image, description: description}
 
-    campgrounds.push(newCampground)
-
-    res.redirect("/campgrounds")
+    Campground.create(newCampground, function(err, newlyCreated){
+        if(err){
+            console.log(err)
+        } else {
+            res.redirect("/campgrounds")       
+        }
+    })
+})
+app.get("/campgrounds/:id", (req, res) => {
+    Campground.findById(req.params.id, function(err, foundCampground){
+        if(err){
+            console.log(err)
+        } else {
+            res.render("show", {campground: foundCampground})
+        }
+    })
+    req.params.id
 })
 
 
