@@ -2,20 +2,15 @@ var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
+var Campground = require("./models/campground");
+var seedDB = require("./seeds")
 
-mongoose.connect("mongodb://localhost/yelp_camp", { useNewUrlParser: true, useUnifiedTopology: true });
+seedDB();
+
+mongoose.connect("mongodb://localhost:27017/yelp_camp", { useNewUrlParser: true, useUnifiedTopology: true });
 app.use(bodyParser.urlencoded({extended: true}))
 app.set("view engine", "ejs")
 
-//SCHEMA SETUP
-var campgroundSchema = new mongoose.Schema({
-    name: String,
-    image: String,
-    description: String
-});
-
-var Campground = mongoose.model("Campground", campgroundSchema);
-  
 
 app.get("/", (req, res) => {
     res.render("landing")
@@ -47,14 +42,14 @@ app.post("/campgrounds", (req, res) => {
     })
 })
 app.get("/campgrounds/:id", (req, res) => {
-    Campground.findById(req.params.id, function(err, foundCampground){
+    Campground.findById(req.params.id).populate("comments").exec(function(err, foundCampground){
         if(err){
             console.log(err)
         } else {
+            console.log(foundCampground)
             res.render("show", {campground: foundCampground})
         }
     })
-    req.params.id
 })
 
 
