@@ -6,22 +6,22 @@ var data = [
     {
         name: "Turtle Pond", 
         image: "https://images.unsplash.com/photo-1471115853179-bb1d604434e0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=959&q=80", 
-        description: "This is an open campground surrounding a large pond filled with turtles"
+        description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda magnam nam odio numquam vel autem, maxime libero laudantium, ducimus maiores possimus praesentium animi, optio itaque. Dolorem qui voluptatem, aliquid facere pariatur ipsum. Odit consectetur ratione dignissimos, amet quae pariatur quidem tempore, facilis ipsam soluta alias non ipsum voluptatum vitae molestiae."
     },
     { 
         name: "Tree Pine", 
         image: "https://images.unsplash.com/photo-1492648272180-61e45a8d98a7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80", 
-        description: "Come here and sleep among the trees"
+        description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda magnam nam odio numquam vel autem, maxime libero laudantium, ducimus maiores possimus praesentium animi, optio itaque. Dolorem qui voluptatem, aliquid facere pariatur ipsum. Odit consectetur ratione dignissimos, amet quae pariatur quidem tempore, facilis ipsam soluta alias non ipsum voluptatum vitae molestiae."
     },
     { 
         name: "Glow Falls",
         image: "https://images.unsplash.com/photo-1487730116645-74489c95b41b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80", 
-        description: "This place is full of glow in the dark insects and tents"
+        description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda magnam nam odio numquam vel autem, maxime libero laudantium, ducimus maiores possimus praesentium animi, optio itaque. Dolorem qui voluptatem, aliquid facere pariatur ipsum. Odit consectetur ratione dignissimos, amet quae pariatur quidem tempore, facilis ipsam soluta alias non ipsum voluptatum vitae molestiae."
     },
     { 
         name: "Snow Creek", 
         image: "https://images.unsplash.com/photo-1455496231601-e6195da1f841?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1395&q=80", 
-        description: "Come pitch a tent in the snow"
+        description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda magnam nam odio numquam vel autem, maxime libero laudantium, ducimus maiores possimus praesentium animi, optio itaque. Dolorem qui voluptatem, aliquid facere pariatur ipsum. Odit consectetur ratione dignissimos, amet quae pariatur quidem tempore, facilis ipsam soluta alias non ipsum voluptatum vitae molestiae."
     }
 ]
 
