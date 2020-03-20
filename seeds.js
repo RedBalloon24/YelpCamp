@@ -25,22 +25,22 @@ var data = [
     }
 ]
 
-function seedDB(){
+function seedDB() {
     //Remove all campgrounds
-    Campground.deleteMany({}, function(err){
+    Campground.deleteMany({}, (err) => {
         if(err){
             console.log(err)
         }
         console.log("Removed campgrounds!!")
         //Remove all comments
-        Comment.deleteMany({}, function(err){
+        Comment.deleteMany({}, (err) => {
             if(err){
                 console.log(err)
             }
             console.log("Removed comments!!")
-            //Add a few campgrounds
-            data.forEach(function(seed){
-                Campground.create(seed, function(err, campground){
+            //Add campgrounds
+            data.forEach((seed) => {
+                Campground.create(seed, (err, campground) => {
                     if(err){
                         console.log(err)
                     } else {
@@ -50,23 +50,20 @@ function seedDB(){
                             {
                                 text: "This place is great, but I wish there was internet",
                                 author: "Homer"
-                            }
-                        ), function(err, comment){
-                            if(err){
-                                console.log(err)
-                            } else {
-                                campground.comments.push(comment);
-                                campground.save();
-                            }
-                        }
-                        console.log("Created new comment")
+                            }, (err, comment) => {
+                                if(err){
+                                    console.log(err)
+                                } else {
+                                    campground.comments.push(comment);
+                                    campground.save();
+                                    console.log("Created new comment")
+                                }
+                        })
                     }
                 })
             })
         })
     });
-    
-    //Add comments
 }
 
 module.exports = seedDB;
