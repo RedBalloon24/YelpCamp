@@ -27,6 +27,7 @@ router.post("/", secure.isLoggedIn, (req, res) => {
     
     Campground.create(newCampground, (err, newlyCreated) => {
         if(err){
+            req.flash("error", "Something went wrong")
             console.log(err)
         } else {
             res.redirect("/campgrounds")       
@@ -62,11 +63,12 @@ router.put("/:id", secure.checkCampgroundOwnership, (req, res) => {
 
 router.delete("/:id", secure.checkCampgroundOwnership, async(req,res) => {
     try {
-      let foundCampground = await Campground.findById(req.params.id);
-      await foundCampground.remove();
-      res.redirect("/campgrounds");
+        let foundCampground = await Campground.findById(req.params.id);
+        await foundCampground.remove();
+        res.redirect("/campgrounds");
     } catch (error) {
-      res.redirect("/campgrounds");
+        req.flash("success", "Campground Deleted")
+        res.redirect("/campgrounds");
     }
 })
 

@@ -23,6 +23,7 @@ router.post("/", secure.isLoggedIn, (req, res) => {
         } else {
             Comment.create(req.body.comment, (err, comment) => {
                 if(err){
+                    req.flash("error", "Something went wrong")
                     console.log(err)
                 } else {
                     comment.author.id = req.user._id;
@@ -38,12 +39,18 @@ router.post("/", secure.isLoggedIn, (req, res) => {
 })
 
 router.get("/:comment_id/edit", secure.checkCommentOwnership, (req, res) => {
-    Comment.findById(req.params.comment_id, (err, foundComment) => {
-        if(err){
-            res.redirect("back")
-        } else {
-            res.render("comments/edit", {campground_id: req.params.id, comment: foundComment})
+    Campground.findById(req.params.id, (err, foundCampground) => {
+        if(err || !foundCampground){
+            req.flash("error", "Item not found")
+            return res.redirect("back")
         }
+        Comment.findById(req.params.comment_id, (err, foundComment) => {
+            if(err){
+                res.redirect("back")
+            } else {
+                res.render("comments/edit", {campground_id: req.params.id, comment: foundComment})
+            }
+        })
     })
 })
 
@@ -62,6 +69,7 @@ router.delete("/:comment_id", secure.checkCommentOwnership, (req,res) => {
         if(err){
             res.redirect("back")
         } else {
+            req.flash("success", "Comment Deleted")
             res.redirect("/campgrounds/" + req.params.id)
         }
     })
