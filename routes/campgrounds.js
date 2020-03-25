@@ -4,7 +4,7 @@ var Campground = require("../models/campground");
 var secure = require("../middlewares/secure.mid")
 
 
-router.get("/", secure.isLoggedIn, (req, res) => {
+router.get("/", (req, res) => {
     Campground.find({}, (err, allCampgrounds) => {
         if(err){
             console.log(err)
@@ -35,7 +35,7 @@ router.post("/", secure.isLoggedIn, (req, res) => {
     })
 })
 
-router.get("/:id", secure.isLoggedIn, (req, res) => {
+router.get("/:id", (req, res) => {
     Campground.findById(req.params.id).populate("comments").exec((err, foundCampground) => {
         if(err){
             console.log(err)
