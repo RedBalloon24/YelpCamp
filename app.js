@@ -6,10 +6,10 @@ var flash = require("connect-flash");
 var passport = require("passport");
 var LocalStrategy = require("passport-local");
 var methodOverride = require("method-override");
-var Campground = require("./models/campground");
-var Comment = require("./models/comment");
+// var Campground = require("./models/campground");
+// var Comment = require("./models/comment");
 var User = require("./models/user")
-var seedDB = require("./seeds")
+// var seedDB = require("./seeds")
 
 var campgroundRoutes = require("./routes/campgrounds")
 var commentRoutes = require("./routes/comments")
