@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
@@ -41,6 +43,7 @@ app.use((req, res, next) => {
     res.locals.error = req.flash("error");
     res.locals.success = req.flash("success");
     next();
+    res.locals.GMAPKEY = process.env.GMAPKEY
 });
 
 app.use("/", indexRoutes);
