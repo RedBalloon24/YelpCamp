@@ -1,7 +1,9 @@
 var express = require("express");
 var router = express.Router();
 var passport = require("passport");
-var User = require("../models/user")
+var secure = require("../middlewares/secure.mid");
+var User = require("../models/user");
+var Campground = require("../models/campground")
 
 
 router.get("/", (req, res) => {
@@ -13,7 +15,7 @@ router.get("/register", (req, res) => {
 })
 
 router.post("/register", (req, res) => {
-    var newUser = new User({username: req.body.username})
+    var newUser = new User({username: req.body.username, email: req.body.email, avatarURL: req.body.avatarURL})
     
     if(req.body.adminCode === "secretcode123"){
         newUser.isAdmin = true;
@@ -44,6 +46,40 @@ router.get("/logout", (req, res) => {
     req.logout();
     req.flash("success", "Logout Successful!");
     res.redirect("/")
+})
+
+router.get("/users/:id", secure.isLoggedIn, (req, res) => {
+    User.findById(req.params.id, (err, foundUser) => {
+        if(err){
+            req.flash("error", "Something went wrong")
+            res.redirect("/")
+        }
+        Campground.find().where("author.id").equals(foundUser._id).exec((err, campgrounds) => {
+            if(err){
+                req.flash("error", "Something went wrong")
+                res.redirect("/")
+            }
+            res.render("users/show", {user: foundUser, campgrounds: campgrounds}) 
+        })
+    })
+})
+
+router.get("/users/:id/edit", secure.checkProfileOwnership, (req, res) => {
+    User.findById(req.params.id, (err, foundUser) => {
+        res.render("users/edit", {user: foundUser}) 
+    })
+})
+
+router.put("/users/:id", secure.checkProfileOwnership, (req, res) => {
+        User.findByIdAndUpdate(req.params.id, req.body.user, (err, updatedUser) => {
+            if(err){
+                req.flash("error", err.message)
+                res.redirect("/campgrounds")
+            } else {
+                req.flash("success", "Successfully Updated!")
+                res.redirect("/users/" + req.params.id)
+            }
+        })
 })
 
 

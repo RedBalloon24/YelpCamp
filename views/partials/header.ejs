@@ -22,7 +22,7 @@
                     </li>
                 <% } else { %>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Signed In As: <strong style="text-transform: uppercase;"><%= currentUser.username %></strong></a>
+                        <a class="nav-link" href="/users/<%= currentUser._id %>">Signed In As: <strong class="capitalize"><%= currentUser.username %></strong></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/logout">Logout</a>
