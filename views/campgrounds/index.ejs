@@ -7,13 +7,35 @@
     
     <header class="jumbotron">
         <div class="container">
-            <h1>Welcome to YelpCamp!</h1>
-            <p>View our handpicked campgrounds from all over the world</p>
-            <p>
-                <a class="btn btn-primary btn-lg" href="campgrounds/new">Add New Campground</a>
-            </p>
+            <h1 class="title">Welcome to YelpCamp!</h1>
+            <p class="home-text">View our handpicked campgrounds from all over the world</p>
+            <% if(noMatch !== null) { %>
+                <div class="text-center mt-5">
+                    <a class="btn btn-warning btn-lg" href="/campgrounds">Try Again</a>
+                </div>
+            <% } else { %>
+                <p>
+                    <a class="btn btn-primary btn-lg" href="campgrounds/new">Add New Campground</a>
+                </p>
+                <form action="/campgrounds" method="GET" class="form-inline">
+                    <div class="form-group">
+                        <input type="text" name="search" placeholder="Campground search..." class="form-control mr-2">
+                        <input type="submit" value="Search" class="btn btn-outline-dark">
+                        <a class="btn btn-outline-info btn ml-3" href="/campgrounds">Reset</a>
+                    </div>
+                </form>
+            <% } %>
+           
         </div>
     </header>
+    
+    <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+        <div class="col-md-12">
+            <% if(noMatch !== null) { %>
+                <h3><%= noMatch %></h3>
+            <% } %>
+        </div>  
+    </div>  
 
     <div class="row text-center">
         <% campgrounds.forEach((campground) => { %>
