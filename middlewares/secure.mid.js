@@ -21,7 +21,7 @@ module.exports.checkCampgroundOwnership = (req, res, next) => {
                     req.flash("error", "Item not found.")
                     return res.redirect("back")
                 }
-                if(foundCampground.author.id.equals(req.user._id)){
+                if(foundCampground.author.id.equals(req.user._id) || req.user.isAdmin){
                    next()
                 } else {
                     req.flash("error", "You don't have permission to do that")
@@ -46,7 +46,7 @@ module.exports.checkCommentOwnership = (req, res, next) => {
                 //     req.flash("error", "Item not found.")
                 //     return res.redirect("back")
                 // }
-                if(foundComment.author.id.equals(req.user._id)){
+                if(foundComment.author.id.equals(req.user._id) || req.user.isAdmin){
                    next()
                 } else {
                     req.flash("error", "You don't have permission to do that")
