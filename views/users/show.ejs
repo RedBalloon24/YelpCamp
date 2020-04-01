@@ -1,6 +1,6 @@
 <%- include("../partials/header") %>
 
-<div class="row justify-content-center">
+<div class="row justify-content-center mb-3">
     <div class="col-md-4">
         <div class="card">
             <h1 class="capitalize text-center"><%= user.username %></h1>
@@ -11,9 +11,11 @@
             <% } %>
             <div class="card-body">
                 <div class="card-title">
-                    <p>
-                        <%= user.description %>
-                    </p>
+                    <% if(!user.avatarURL){ %>
+                        <p>"This is where you tell us about yourself!! Make it creative and unique to you!! :-)"</p>
+                    <% } else { %>
+                        <p>"<%= user.description %>"</p>
+                    <% } %>
                 </div>
                 <p class="text-center"><strong><%= user.username %>'s Posts:</strong></p>
                 <ul class="card-text list-group list-group-flush text-center mb-3">
@@ -23,7 +25,7 @@
                 </ul>
                 <div class="text-center">
                     <% if(currentUser && user._id.equals(currentUser._id) || currentUser && currentUser.isAdmin){ %>
-                    <a href="/users/<%= user.id %>/edit" class="btn btn-primary mt-5">Edit Profile</a>
+                    <a href="/users/<%= user.id %>/edit" class="btn btn-primary mt-3">Edit Profile</a>
                 <% } %>
                 </div>
                 
