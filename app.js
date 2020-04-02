@@ -17,7 +17,11 @@ var campgroundRoutes = require("./routes/campgrounds")
 var commentRoutes = require("./routes/comments")
 var indexRoutes = require("./routes/index")
 
-mongoose.connect("mongodb://localhost:27017/yelp_camp", { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true });
+var MONGODB_URI = process.env.MONGODB_URI;
+
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
+    .then(() => console.info(`Connected to the database: ${MONGODB_URI}`))
+    .catch(error => console.error(`An error ocurred trying to connect to the database: ${MONGODB_URI}`, error));
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
