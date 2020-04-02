@@ -58,4 +58,4 @@ app.use("/campgrounds", campgroundRoutes);
 app.use("/campgrounds/:id/comments", commentRoutes);
 
 
-app.listen(3000, () => console.log("YelpCamp has started"));
+app.listen(process.env.PORT || 3000, () => console.log("YelpCamp has started"));
