@@ -33,7 +33,7 @@ var data = [
     },
     {
         name: "Mountain Oasis",
-        image: "https://images.unsplash.com/photo-1471115853179-bb1d604434e0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=959&q=80",
+        image: "https://images.unsplash.com/photo-1476041800959-2f6bb412c8ce?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
         description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda magnam nam odio numquam vel autem, maxime libero laudantium, ducimus maiores possimus praesentium animi, optio itaque. Dolorem qui voluptatem, aliquid facere pariatur ipsum. Odit consectetur ratione dignissimos, amet quae pariatur quidem tempore, facilis ipsam soluta alias non ipsum voluptatum vitae molestiae.",
         location: "Oslo, Norway",
         price: "150"

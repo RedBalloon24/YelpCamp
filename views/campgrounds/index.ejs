@@ -44,6 +44,9 @@
                     <img src="<%= campground.image %>" class="card-img-top box home-page-img">
                     <div class="card-body pb-1">
                         <h4><%= campground.name %></h4>
+                        <div>
+                            <span class="badge badge-pill badge-secondary"><i class="fas fa-thumbs-up"></i> <%= campground.likes.length %></span>
+                        </div>
                     </div>
                     <p>
                         <a href="/campgrounds/<%= campground._id %>" class="btn btn-primary">More Info</a>

@@ -74,7 +74,7 @@ router.post("/", secure.isLoggedIn, (req, res) => {
 })
 
 router.get("/:id", (req, res) => {
-    Campground.findById(req.params.id).populate("comments").exec((err, foundCampground) => {
+    Campground.findById(req.params.id).populate("comments likes").exec((err, foundCampground) => {
         if(err){
             console.log(err)
         } else {
@@ -121,6 +121,33 @@ router.delete("/:id", secure.checkCampgroundOwnership, async(req,res) => {
         res.redirect("/campgrounds");
     }
 })
+
+router.post("/:id/like", secure.isLoggedIn, (req, res) => {
+    Campground.findById(req.params.id,  (err, foundCampground) => {
+        if(err) {
+            console.log(err);
+            return res.redirect("/campgrounds");
+        }
+
+        var foundUserLike = foundCampground.likes.some(like => {
+            return like.equals(req.user._id);
+        });
+
+        if(foundUserLike) {
+            foundCampground.likes.pull(req.user._id);
+        }else{
+            foundCampground.likes.push(req.user);
+        }
+
+        foundCampground.save(err => {
+            if(err){
+                console.log(err);
+                return res.redirect("/campgrounds");
+            }
+            return res.redirect("/campgrounds/" + foundCampground._id);
+        });
+    });
+});
 
 function escapeRegex(text) {
     return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
