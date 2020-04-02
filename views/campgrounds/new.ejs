@@ -1,24 +1,27 @@
 <%- include("../partials/header") %>
 
 <div class="container">
+    <% if(currentUser && currentUser.isAdmin) { %>
+        <h1 class="admin text-center">Admin Account</h1>
+    <% } %>
     <h1 class="text-center">Create a New Campground</h1>
-    <div style="width: 30%; margin: 25px auto;">
+    <div class="info-box">
         <form action="/campgrounds" method="POST">
             <div class="form-group">
-                <input class="form-control" type="text" name="name" placeholder="name">
+                <input class="form-control" type="text" name="name" placeholder="name" required>
             </div>
             <div class="form-group">
-                <input class="form-control" type="number" name="price" placeholder="price" min="0.01" step="0.01">
+                <input class="form-control" type="number" name="price" placeholder="price" min="0.01" step="0.01" required>
             </div>
             <div class="form-group">
-                <input class="form-control" type="text" name="image" placeholder="image url">
+                <input class="form-control" type="text" name="image" placeholder="image url" required>
             </div>
             <div class="form-group">
-                <input class="form-control" type="text" name="description" placeholder="description">
+                <input class="form-control" type="text" name="description" placeholder="description" required>
             </div>
             <div class="form-group">
                 <label for="location">Location</label>
-                <input class="form-control" type="text" name="location" id="location" placeholder="Yosemite National Park, CA">
+                <input class="form-control" type="text" name="location" id="location" placeholder="Yosemite National Park, CA" required>
             </div>
             <div class="form-group">
                <button class="btn btn-lg btn-primary btn-block">Submit</button> 

@@ -15,9 +15,9 @@ router.get("/register", (req, res) => {
 })
 
 router.post("/register", (req, res) => {
-    var newUser = new User({username: req.body.username, email: req.body.email, avatarURL: req.body.avatarURL})
+    var newUser = new User({username: req.body.username, email: req.body.email})
     
-    if(req.body.adminCode === "secretcode123"){
+    if(req.body.adminCode === process.env.ADMINCODE || req.body.adminCode === "secretcode123"){
         newUser.isAdmin = true;
     }
     User.register(newUser, req.body.password, (err, user) => {

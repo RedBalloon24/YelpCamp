@@ -2,25 +2,39 @@
 
 <div class="container">
     <h1 class="text-center">Sign Up</h1>
-    <div style="width: 30%; margin: 25px auto;">
+    <div class="info-box">
         <form action="/register" method="POST">
             <div class="form-group">
-                <input class="form-control" type="text" name="username" placeholder="Username">
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fas fa-user"></i></div>
+                    </div>
+                    <input class="form-control" type="text" name="username" placeholder="Username">
+                </div>
             </div>
             <div class="form-group">
-                <input class="form-control" type="password" name="password" placeholder="Password">
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fas fa-lock"></i></div>
+                    </div>
+                    <input class="form-control" type="password" name="password" placeholder="Password">
+                </div>
             </div>
             <div class="form-group">
-                <input class="form-control" type="email" name="email" placeholder="Email">
-            </div>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fas fa-envelope"></i></div>
+                    </div>
+                    <input class="form-control" type="email" name="email" placeholder="Email">
+                </div>
+            </div>      
             <div class="form-group">
-                <input class="form-control" type="text" name="avatarURL" placeholder="Avatar URL">
-            </div>
-            <div class="form-group">
-                <input class="form-control" type="text" name="description" placeholder="Description">
-            </div>
-            <div class="form-group">
-                <input class="form-control" type="text" name="adminCode" placeholder="Admin Code">
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fas fa-key"></i></div>
+                    </div>
+                    <input class="form-control" type="password" name="adminCode" placeholder="Admin Code">
+                </div>
             </div>
             <div class="form-group">
                <button class="btn btn-lg btn-primary btn-block">Sign Up</button> 

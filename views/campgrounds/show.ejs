@@ -1,6 +1,9 @@
 <%- include("../partials/header") %>
 
 <div class="container">
+    <% if(currentUser && currentUser.isAdmin) { %>
+        <h1 class="admin text-center">Admin Account</h1>
+    <% } %>
     <div class="row">
         <div class="col-md-3">
             <div id="map"></div>

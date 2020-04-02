@@ -43,10 +43,10 @@ module.exports.checkCommentOwnership = (req, res, next) => {
                 req.flash("error", "Item not found.")
                 res.redirect("back")
             } else {
-                // if(!foundComment){
-                //     req.flash("error", "Item not found.")
-                //     return res.redirect("back")
-                // }
+                if(!foundComment){
+                    req.flash("error", "Item not found.")
+                    return res.redirect("back")
+                }
                 if(foundComment.author.id.equals(req.user._id) || req.user.isAdmin){
                    next()
                 } else {
