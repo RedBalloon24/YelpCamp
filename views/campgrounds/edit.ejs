@@ -17,10 +17,9 @@
                 <input class="form-control" type="text" name="campground[image]" value="<%= campground.image %>" required>
             </div>
             <div class="form-group">
-                <input class="form-control" type="text" name="campground[description]" value="<%= campground.description %>">
+                <textarea class="form-control" type="text" name="campground[description]" placeholder="<%= campground.description %>" rows="5" cols="70"><%= campground.description %></textarea>
             </div>
             <div class="form-group">
-                <label for="location">Location</label>
                 <input class="form-control" type="text" name="location" id="location" value="<%= campground.location %>" required>
             </div>
             <div class="form-group">

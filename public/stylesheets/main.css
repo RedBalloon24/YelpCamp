@@ -44,3 +44,24 @@ a:hover {
 .home-page-img {
     height: 18.5vh; 
 }
+
+.like-btn {
+    padding-bottom: 20px;
+}
+
+.new-comment-border {
+    border-left: 5px solid #00C851:
+}
+
+.no-comment {
+    color: grey;
+}
+
+.online {
+    color: orange;
+}
+
+.edit-comment-border {
+    border-left: 5px solid #ffbb33; 
+    margin-top: 15px;
+}

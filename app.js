@@ -33,7 +33,7 @@ app.use(flash());
 app.locals.moment = require("moment");
 
 app.use(require("express-session")({
-   secret: "This is super secret!",
+   secret: process.env.EXPRESS_SESSION_SECRET,
    resave: false,
    saveUninitialized: false
 }))

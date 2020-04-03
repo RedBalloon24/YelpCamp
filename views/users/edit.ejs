@@ -16,11 +16,11 @@
             </div>
             <% if(!user.description){ %>
                 <div class="form-group">
-                    <input class="form-control" type="text" name="user[description]" value="This is where you tell us about yourself!! Edit your profile and make it creative and unique to you!! :-)" required>
+                    <textarea class="form-control" type="text" name="user[description]" placeholder="This is where you tell us about yourself!! Edit your profile and make it creative and unique to you!! :-)" rows="5" cols="70" required>"This is where you tell us about yourself!! Edit your profile and make it creative and unique to you!! :-)"</textarea>
                 </div>
             <% } else { %>
                 <div class="form-group">
-                    <input class="form-control" type="text" name="user[description]" value="<%= user.description %>" required>
+                    <textarea class="form-control" type="text" name="user[description]" placeholder="<%= user.description %>" rows="5" cols="70" required><%= user.description %></textarea>
                 </div>
             <% } %>
             <div class="form-group">

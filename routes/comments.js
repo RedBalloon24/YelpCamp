@@ -31,6 +31,8 @@ router.post("/", secure.isLoggedIn, (req, res) => {
                     comment.save();
                     campground.comments.push(comment)
                     campground.save()
+                    console.log(comment);
+                    req.flash('success', 'Created a comment!');
                     res.redirect("/campgrounds/" + campground._id)       
                 }
             })
@@ -59,6 +61,7 @@ router.put("/:comment_id", secure.checkCommentOwnership, (req, res) => {
         if(err){
             res.redirect("back")
         } else {
+            req.flash('success', 'Comment Updated!')
             res.redirect("/campgrounds/" + req.params.id)
         }
     })
@@ -69,7 +72,7 @@ router.delete("/:comment_id", secure.checkCommentOwnership, (req,res) => {
         if(err){
             res.redirect("back")
         } else {
-            req.flash("success", "Comment Deleted")
+            req.flash("success", "Comment Deleted!")
             res.redirect("/campgrounds/" + req.params.id)
         }
     })
