@@ -16,6 +16,9 @@ var geocoder = NodeGeocoder(options);
 
 router.get("/", (req, res) => {
     var noMatch = null
+    var perPage = 8;
+    var pageQuery = parseInt(req.query.page);
+    var pageNumber = pageQuery ? pageQuery : 1;
 
     if(req.query.search){
         const regex = new RegExp(escapeRegex(req.query.search), 'gi');
@@ -31,12 +34,14 @@ router.get("/", (req, res) => {
             }
          });
     } else {
-        Campground.find({}, (err, allCampgrounds) => {
-            if(err){
-                console.log(err)
-            } else {
-                res.render("campgrounds/index", {campgrounds: allCampgrounds, noMatch: noMatch})        
-            }
+        Campground.find({}).skip((perPage * pageNumber) - perPage).limit(perPage).exec((err, allCampgrounds) => {
+            Campground.count().exec( (err, count) => {
+                if(err){
+                    console.log(err)
+                } else {
+                    res.render("campgrounds/index", {campgrounds: allCampgrounds, noMatch: noMatch, current: pageNumber, pages: Math.ceil(count / perPage)})        
+                }
+            })
         })
     }
 })
