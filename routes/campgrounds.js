@@ -35,7 +35,7 @@ router.get("/", (req, res) => {
          });
     } else {
         Campground.find({}).skip((perPage * pageNumber) - perPage).limit(perPage).exec((err, allCampgrounds) => {
-            Campground.count().exec( (err, count) => {
+            Campground.estimatedDocumentCount().exec( (err, count) => {
                 if(err){
                     console.log(err)
                 } else {

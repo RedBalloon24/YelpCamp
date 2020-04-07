@@ -40,6 +40,7 @@ router.post("/login", passport.authenticate("local",
     {successRedirect: "/campgrounds", 
     failureRedirect: "/login"
     }), (req, res) => {
+        
 })
 
 router.get("/logout", (req, res) => {

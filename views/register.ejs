@@ -9,7 +9,7 @@
                     <div class="input-group-prepend">
                         <div class="input-group-text"><i class="fas fa-user"></i></div>
                     </div>
-                    <input class="form-control" type="text" name="username" placeholder="Username">
+                    <input class="form-control shadow" type="text" name="username" placeholder="Username">
                 </div>
             </div>
             <div class="form-group">
@@ -17,7 +17,7 @@
                     <div class="input-group-prepend">
                         <div class="input-group-text"><i class="fas fa-lock"></i></div>
                     </div>
-                    <input class="form-control" type="password" name="password" placeholder="Password">
+                    <input class="form-control shadow" type="password" name="password" placeholder="Password">
                 </div>
             </div>
             <div class="form-group">
@@ -25,22 +25,24 @@
                     <div class="input-group-prepend">
                         <div class="input-group-text"><i class="fas fa-envelope"></i></div>
                     </div>
-                    <input class="form-control" type="email" name="email" placeholder="Email">
+                    <input class="form-control shadow" type="email" name="email" placeholder="Email">
                 </div>
-            </div>      
+            </div> 
+            <hr>  
             <div class="form-group">
+                <label for="AdminCode" class="d-flex justify-content-center"><strong>Admin Use Only:</strong></label>
                 <div class="input-group mb-2">
                     <div class="input-group-prepend">
                         <div class="input-group-text"><i class="fas fa-key"></i></div>
                     </div>
-                    <input class="form-control" type="password" name="adminCode" placeholder="Admin Code">
+                    <input class="form-control shadow" id="AdminCode" type="password" name="adminCode" placeholder="Admin Code">
                 </div>
             </div>
             <div class="form-group">
-               <button class="btn btn-lg btn-primary btn-block">Sign Up</button> 
+               <button class="btn btn-lg btn-primary btn-block shadow">Sign Up</button> 
             </div>
         </form>
-        <a href="/login">Already Registered?</a>
+        <p class="text-center mt-4">Already Registered? <a href="/login">Log in here</a></p>
     </div>
 </div>
 
