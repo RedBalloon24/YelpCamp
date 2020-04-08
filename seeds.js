@@ -11,7 +11,7 @@ var data = [
         price: "25.99"
     },
     { 
-        name: "Tree Pine", 
+        name: "Forest Pine", 
         image: "https://images.unsplash.com/photo-1492648272180-61e45a8d98a7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80", 
         description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda magnam nam odio numquam vel autem, maxime libero laudantium, ducimus maiores possimus praesentium animi, optio itaque. Dolorem qui voluptatem, aliquid facere pariatur ipsum. Odit consectetur ratione dignissimos, amet quae pariatur quidem tempore, facilis ipsam soluta alias non ipsum voluptatum vitae molestiae.",
         location: "Inverness, Scotland, UK",
@@ -58,6 +58,13 @@ var data = [
         description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda magnam nam odio numquam vel autem, maxime libero laudantium, ducimus maiores possimus praesentium animi, optio itaque. Dolorem qui voluptatem, aliquid facere pariatur ipsum. Odit consectetur ratione dignissimos, amet quae pariatur quidem tempore, facilis ipsam soluta alias non ipsum voluptatum vitae molestiae.",
         location: "Galicia, Spain",
         price: "53.99"
+    },
+    {
+        name: "Party Camp",
+        image: "https://images.unsplash.com/photo-1520095972714-909e91b038e5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+        description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda magnam nam odio numquam vel autem, maxime libero laudantium, ducimus maiores possimus praesentium animi, optio itaque. Dolorem qui voluptatem, aliquid facere pariatur ipsum. Odit consectetur ratione dignissimos, amet quae pariatur quidem tempore, facilis ipsam soluta alias non ipsum voluptatum vitae molestiae.",
+        location: "Glasgow, Scotland, UK",
+        price: "199.99"
     }
 ]
 

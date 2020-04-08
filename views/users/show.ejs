@@ -8,20 +8,13 @@
 <div class="row justify-content-center mb-3">
     <div class="col-lg-6 col-md-8 col-sm-8">
         <div class="card shadow">
-            <h1 class="capitalize text-center mt-2"><%= user.username %></h1>
+            <h1 class="capitalize text-center mt-2"><strong><%= user.username %></strong></h1>
             <% if(!user.avatarURL){ %>
                 <img src="https://images.unsplash.com/photo-1546811740-23e671faf31c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" class="card-img-top" alt="user profile image"> 
             <% } else { %>
                 <img src="<%= user.avatarURL %>" class="card-img-top" alt="user profile image"> 
             <% } %>
             <div class="card-body">
-                <div class="card-title text-center">
-                    <% if(!user.email){ %>
-                        <p><strong>example@example.com</strong></p>
-                    <% } else { %>
-                        <p><strong><%= user.email %></strong></p>
-                    <% } %>
-                </div>
                 <div class="card-title">
                     <% if(!user.avatarURL){ %>
                         <p class="text-secondary">"This is where you tell us about yourself!! Edit your profile and make it creative and unique to you!! :-)"</p>
@@ -29,7 +22,7 @@
                         <p>"<%= user.description %>"</p>
                     <% } %>
                 </div>
-                <p class="text-center"><strong><%= user.username %>'s Posts:</strong></p>
+                <p class="text-center"><strong>Posts:</strong></p>
                 <ul class="card-text list-group list-group-flush text-center mb-3">
                     <% campgrounds.forEach((campground) => { %>
                         <li class="list-group-item"><a href="/campgrounds/<%= campground.id %>"><%= campground.name %></a></li>

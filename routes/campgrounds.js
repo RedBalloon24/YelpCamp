@@ -34,7 +34,7 @@ router.get("/", (req, res) => {
             }
          });
     } else {
-        Campground.find({}).skip((perPage * pageNumber) - perPage).limit(perPage).exec((err, allCampgrounds) => {
+        Campground.find({}).sort({createdAt: -1}).skip((perPage * pageNumber) - perPage).limit(perPage).exec((err, allCampgrounds) => {
             Campground.estimatedDocumentCount().exec( (err, count) => {
                 if(err){
                     console.log(err)
