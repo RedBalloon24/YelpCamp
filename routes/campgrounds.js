@@ -19,31 +19,44 @@ router.get("/", (req, res) => {
     var perPage = 8;
     var pageQuery = parseInt(req.query.page);
     var pageNumber = pageQuery ? pageQuery : 1;
-
     if(req.query.search){
         const regex = new RegExp(escapeRegex(req.query.search), 'gi');
 
-        Campground.find({name: regex}, (err, allCampgrounds) => {
-            if(err){
-                console.log(err);
-            } else {
-               if(allCampgrounds.length < 1) {
-                   noMatch = "No campgrounds match that query, please try again.";
-               }
-               res.render("campgrounds/index",{campgrounds:allCampgrounds, noMatch: noMatch});
-            }
-         });
+        Campground.find({name: regex}).skip((perPage * pageNumber) - perPage).limit(perPage).exec((err, allCampgrounds) => {
+            Campground.countDocuments({ name: regex }).exec((err, count) => {
+                if(err){
+                    console.log(err);
+                } else {
+                    if(allCampgrounds.length < 1) {
+                        noMatch = "No campgrounds match that query, please try again.";
+                    }
+                    res.render("campgrounds/index",{ 
+                        campgrounds: allCampgrounds, 
+                        noMatch: noMatch, 
+                        current: pageNumber, 
+                        pages: Math.ceil(count / perPage),
+                        search: req.query.search
+                    });
+                }
+            })
+        })
     } else {
-        Campground.find({}).sort({createdAt: -1}).skip((perPage * pageNumber) - perPage).limit(perPage).exec((err, allCampgrounds) => {
-            Campground.estimatedDocumentCount().exec( (err, count) => {
+        Campground.find({}).skip((perPage * pageNumber) - perPage).limit(perPage).exec((err, allCampgrounds) => {
+            Campground.estimatedDocumentCount().exec((err, count) => {
                 if(err){
                     console.log(err)
                 } else {
-                    res.render("campgrounds/index", {campgrounds: allCampgrounds, noMatch: noMatch, current: pageNumber, pages: Math.ceil(count / perPage)})        
+                    res.render("campgrounds/index", { 
+                        campgrounds: allCampgrounds, 
+                        noMatch: noMatch, 
+                        current: pageNumber, 
+                        pages: Math.ceil(count / perPage)
+                    })    
                 }
             })
         })
     }
+
 })
 
 router.get("/new", secure.isLoggedIn, (req, res) => {
